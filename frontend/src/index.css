@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=DM+Serif+Display:ital@0;1&display=swap");
+@import "tailwindcss";
+
+@theme {
+    /* Variables del tema para Tacoteca */
+    --color-app-green: #121212;          
+    --color-app-green-light: #1e1e1e;    
+    --color-app-green-lighter: #2a2a2a;  
+    
+    --color-app-orange: #ff8c00;         
+    --color-app-orange-dark: #e07b00;    
+    
+    --color-app-cream: #0a0a0a;          
+    --color-app-cream-dark: #161616;     
+    
+    --color-app-text: #e0e0e0;           
+    --color-app-text-light: #a7a7a7;     
+    --color-app-border: #222222;         
+    
+    --color-app-success: #ff8c00;        
+    --color-app-error: #ef4444;
+    --color-app-warning: #f59e0b;
+
+    --font-sans: "Outfit", sans-serif;
+    --font-serif: "DM Serif Display", serif;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-app-text) !important;
+    background-color: var(--color-app-cream) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-app-cream);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-app-orange);
+    border-radius: 3px;
+}
+
+/* Transitions globales */
+a, button {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+input:focus {
+    outline: none;
+}
+.flex-center {
+    @apply flex items-center justify-center;
+}
+.dropdown-link {
+    @apply flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-400 hover:bg-[#ff8c00]/10 hover:text-white transition-colors;
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-slide-in-right { animation: slideInRight 0.3s ease-out forwards; }
+.animate-slide-in-up { animation: slideInUp 0.4s ease-out forwards; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+
+/* ==========================================================================
+   💥 EXTINCIÓN VERDE (COMPATIBLE CON TAILWIND V4 - ESTILO TACOTECA)
+   ========================================================================== */
+
+/* 1. CAMBIAR EL BANNER DE LA CAMIONETA A NARANJA */
+.bg-emerald-950, 
+.bg-green-950,
+div[class*="bg-emerald-"], 
+div[class*="bg-green-"] {
+    background-color: #ff8c00 !important;
+    background-image: none !important;
+}
+
+/* Forzar textos del banner a blanco para excelente contraste */
+.bg-emerald-950 h2, 
+.bg-emerald-950 p,
+div[class*="bg-emerald-"] h2,
+div[class*="bg-emerald-"] p {
+    color: #ffffff !important;
+}
+
+/* Botones de App Store y Google Play a Gris Oscuro */
+.bg-emerald-950 a, 
+.bg-emerald-950 button,
+div[class*="bg-emerald-"] a,
+div[class*="bg-emerald-"] button {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* 2. ARREGLAR LETRAS Y BOTÓN DEL NEWSLETTER */
+.text-emerald-800,
+.text-green-800,
+[class*="text-emerald-"],
+[class*="text-green-"] {
+    color: #ff8c00 !important;
+}
+
+/* Botón Subscribe corregido con texto blanco puro */
+.bg-emerald-600,
+.bg-green-600,
+button[class*="bg-emerald-"],
+button[class*="bg-green-"] {
+    background-color: #ff8c00 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+.bg-emerald-600:hover,
+button[class*="bg-emerald-"]:hover {
+    background-color: #e07b00 !important;
+}
+
+/* Iconos específicos del Newsletter o inputs verdes */
+div[class*="bg-emerald-"] svg,
+div[class*="text-emerald-"] svg {
+    stroke: #ff8c00 !important;
+}
+
+/* 4. INPUTS */
+input[type="email"] {
+    background-color: #0A0A0A !important;
+    border: 1px solid #222222 !important;
+    color: #FFFFFF !important;
+}
+
+/* 5. RESIDUALES DE CABECERA Y NAV */
+header, .bg-white, [class*="bg-[#1b3022]"] {
+    background-color: #121212 !important;
+}
+
+
+/* ==========================================================================
+   🎯 CORRECCIONES INDUSTRIALES (FLEX AMPLIADO Y ACOMODO DE PRECIOS)
+   ========================================================================= */
+
+/* A) Títulos principales en Blanco Puro sin opacidades */
+h1, h2, 
+.text-zinc-800,
+h2[class*="text-zinc-"],
+h2 + p, 
+p[class*="text-zinc-400"],
+main div > p {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* B) Títulos de productos en Blanco Puro */
+h3, 
+h3[class*="text-zinc-"], 
+h3[class*="text-gray-"] {
+    color: #ffffff !important;
+}
+
+/* C) ARREGLO DE CALIFICACIÓN: Texto numérico (4.5) a Blanco Puro */
+.text-zinc-500,
+span[class*="text-zinc-500"],
+span[class*="text-zinc-400"],
+.flex.items-center.gap-1 > span {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* D) Precios base en Blanco Puro */
+.text-zinc-900,
+span[class*="text-zinc-900"],
+div[class*="text-zinc-900"] {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* E) Unidades de medida (/1.5L, /500g) en un gris sutil legible */
+span[class*="text-zinc-400"]:not(p *),
+span[class*="text-gray-400"] {
+    color: #b3b3b3 !important;
+}
+
+/* F) SOLUCIÓN DE CONTENEDOR GRANDE PARA EL PRECIO DE DESCUENTO (MANDADO ABAJO) */
+span[class*="line-through"], 
+.line-through,
+del {
+    color: #ffffff !important;
+    opacity: 0.5 !important;
+    font-size: 0.85em !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    order: 99 !important;
+    flex-basis: 100% !important;
+    margin-top: 4px !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Evitar que el botón naranja colisione con los precios */
+div.flex.items-center.justify-between {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+/* Asegurar que el contenedor de precios permita envolver elementos hacia abajo */
+div.flex.items-center.justify-between > div {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0px 6px;
+}
+
+/* G) Asegurar que la cruz (+) del botón de agregar sea blanca */
+button[class*="bg-orange"] svg,
+button[class*="bg-orange"] svg path,
+button[class*="bg-[#ff8c00]"] svg,
+button[class*="bg-[#ff8c00]"] svg path {
+    stroke: #ffffff !important;
+    fill: none !important;
+}
+
+/* H) BORRAR TODOS LOS BORDES Y CONTORNOS DE LAS TARJETAS */
+div[class*="border-zinc-"],
+div[class*="border-gray-"],
+div[class*="border-white"],
+.border,
+.border-zinc-100,
+.border-gray-200 {
+    border-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   🚨 OPERACIÓN RESCATE ULTRA-ESPECÍFICA: BARRAS DE RESEÑAS
+   ========================================================================== */
+
+/* 1. Forzar el contenedor del riel de la barra (Gris oscuro de fondo) */
+.reviews-dark-patch div[role="progressbar"],
+.reviews-dark-patch div.bg-gray-100,
+.reviews-dark-patch div.bg-gray-200,
+.reviews-dark-patch div.bg-zinc-100,
+.reviews-dark-patch div.bg-zinc-200 {
+    background-color: #2A2A2A !important;
+    background-image: none !important;
+    height: 8px !important;
+    min-height: 8px !important;
+    border-radius: 9999px !important;
+    display: block !important;
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+/* 2. Forzar el relleno activo de la barra (Naranja de la marca) */
+.reviews-dark-patch div[role="progressbar"] > div,
+.reviews-dark-patch div.bg-gray-100 > div,
+.reviews-dark-patch div.bg-gray-200 > div,
+.reviews-dark-patch div.bg-zinc-100 > div,
+.reviews-dark-patch div.bg-zinc-200 > div,
+.reviews-dark-patch div.bg-amber-500,
+.reviews-dark-patch div.bg-yellow-400,
+.reviews-dark-patch div.bg-orange-500,
+.reviews-dark-patch div[style*="width"] {
+    background-color: #FF8C00 !important;
+    background-image: none !important;
+    height: 100% !important;
+    min-height: 8px !important;
+    border-radius: 9999px !important;
+    display: block !important;
+}
