@@ -16,10 +16,11 @@ import CheckoutPayment from "../components/Checkout/CheckoutPayment";
 import CheckoutReview from "../components/Checkout/CheckoutReview";
 import api from "../config/api";
 import { useAuth } from "../context/AuthContext";
+import formatCurrency from "../utils/formatCurrency";
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
 
   const { items, cartTotal, clearCart } = useCart();
   const { user } = useAuth();
@@ -294,9 +295,7 @@ const Checkout = () => {
                 <span>
                   Subtotal ({items.length} {items.length === 1 ? 'artículo' : 'artículos'})
                 </span>
-                <span className="font-bold text-white">
-                  {currency}{cartTotal.toFixed(2)}
-                </span>
+                <span className="font-bold text-white">{formatCurrency(cartTotal)}</span>
               </div>
 
               <div className="flex justify-between text-[#A7A7A7]">
@@ -305,23 +304,19 @@ const Checkout = () => {
                   {deliveryFee === 0 ? (
                     <span className="text-emerald-400 font-bold uppercase tracking-wider">Gratis</span>
                   ) : (
-                    <span className="font-bold text-white">{currency}{deliveryFee.toFixed(2)}</span>
+                    <span className="font-bold text-white">{formatCurrency(deliveryFee)}</span>
                   )}
                 </span>
               </div>
 
               <div className="flex justify-between text-[#A7A7A7]">
                 <span>IVA (16%)</span>
-                <span className="font-bold text-white">
-                  {currency}{tax.toFixed(2)}
-                </span>
+                <span className="font-bold text-white">{formatCurrency(tax)}</span>
               </div>
 
               <div className="flex justify-between pt-4 border-t border-white/5 text-xs font-bold uppercase tracking-wider text-white">
                 <span>Total</span>
-                <span className="text-[#FF8C00] text-sm">
-                  {currency}{total.toFixed(2)}
-                </span>
+                <span className="text-[#FF8C00] text-sm">{formatCurrency(total)}</span>
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const cors = require('cors');
 
 // 1️⃣ ¡AQUÍ NACE 'app'! (Línea crítica, todo lo que use 'app' va abajo de esto)
@@ -10,8 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 // 🍃 Conexión a MongoDB
-mongoose.connect('mongodb://localhost:27017/tacoteca_db')
-  .then(() => console.log('✅ ¡Conectado exitosamente a MongoDB Compass!'))
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/tacoteca_db';
+
+mongoose.connect(mongoUri)
+  .then(() => console.log('✅ ¡Conectado exitosamente a MongoDB!'))
   .catch(err => console.error('❌ Error al conectar a MongoDB:', err));
 
 // 📐 Esquema y Modelo de Usuario

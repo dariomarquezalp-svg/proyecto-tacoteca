@@ -9,19 +9,18 @@ const PopularProducts = ({ products }) => {
   // 1. Si pasan productos por props los usamos; si no, usamos los dummyProducts
   const baseProducts = products && products.length > 0 ? products : dummyProducts;
 
-  // 2. Filtramos por los que tienen rating, ordenamos de mayor a menor y limitamos a los mejores 10
+  // 2. Mostrar los primeros 10 productos disponibles (ratings removed)
   const popularProducts = [...baseProducts]
-    .filter((product) => product.rating && product.rating > 0)
-    .sort((a, b) => b.rating - a.rating)
+    .filter((product) => product.stock > 0)
     .slice(0, 10);
 
   return (
     <section className="pb-16 p-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h2 className="text-2xl font-semibold text-gray-800">Popular Products</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Populares</h2>
           <p className="text-sm text-gray-500 mt-1">
-            Top-rated products this season
+            Los favoritos de la casa
           </p>
         </div>
         <Link

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   ArrowUpRight as ArrowUpRightIcon,
   ChevronDown as ChevronDownIcon,
@@ -52,9 +52,8 @@ const Navbar = () => {
           
           {/* Enlaces de Navegación - Escritorio */}
           <div className="hidden md:flex items-center gap-6 text-sm text-zinc-400">
-            <Link to="/" className="hover:text-[#ff8c00] transition-colors">Inicio</Link>
-            <Link to="/products" className="hover:text-[#ff8c00] transition-colors">Productos</Link>
-            <Link to="/deals" className="text-[#ff8c00] hover:text-[#e07b00] transition-colors font-medium">Ofertas</Link>
+            <NavLink to="/" className={({isActive}) => isActive ? 'text-[#ff8c00] font-medium' : 'hover:text-[#ff8c00] transition-colors'}>Inicio</NavLink>
+            <NavLink to="/products" className={({isActive}) => isActive ? 'text-[#ff8c00] font-medium' : 'hover:text-[#ff8c00] transition-colors'}>Productos</NavLink>
           </div>
           
           {/* Barra de Búsqueda */}
@@ -148,9 +147,7 @@ const Navbar = () => {
                       <Link to="/products" className="flex md:hidden items-center gap-2 px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-900 transition-colors">
                         <ArrowUpRightIcon size={16} /> Productos
                       </Link>
-                      <Link to="/deals" className="flex md:hidden items-center gap-2 px-4 py-2 text-sm text-[#ff8c00] hover:bg-zinc-900 transition-colors">
-                        <ArrowUpRightIcon size={16} /> Ofertas
-                      </Link>
+                      {/* Ofertas removed */}
 
                       {user?.isAdmin && (
                         <Link to="/admin/products" className="flex items-center gap-2 px-4 py-2 text-sm text-[#ff8c00] hover:bg-[#ff8c00]/10 transition-colors font-medium">

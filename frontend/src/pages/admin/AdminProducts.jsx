@@ -5,9 +5,10 @@ import { PlusIcon, EditIcon, XIcon } from "lucide-react";
 import Loading from "../../components/Loading";
 import api from "../../config/api";
 import toast from "react-hot-toast";
+import formatCurrency from "../../utils/formatCurrency";
 
 export default function AdminProducts() {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -97,7 +98,7 @@ export default function AdminProducts() {
                       </div>
                     </td>
                     <td className="px-6 py-4 font-bold text-white">
-                      {currency}{productPrice.toFixed(2)}
+                      {formatCurrency(productPrice)}
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-0.5 rounded-sm text-[10px] font-bold ${

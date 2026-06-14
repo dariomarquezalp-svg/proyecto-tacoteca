@@ -10,9 +10,10 @@ import {
 import Loading from "../../components/Loading";
 import { statusColors } from "../../assets/assets";
 import api from "../../config/api";
+import formatCurrency from "../../utils/formatCurrency";
 
 export default function AdminDashboard() {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -127,7 +128,7 @@ export default function AdminDashboard() {
                         {order.items?.length || 0} pzs
                       </td>
                       <td className="px-6 py-4 font-bold text-white">
-                        {currency}{orderTotal.toFixed(2)}
+                        {formatCurrency(orderTotal)}
                       </td>
                       <td className="px-6 py-4">
                         <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase ${statusColors[order.status] || "bg-neutral-800 text-gray-400"}`}>

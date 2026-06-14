@@ -2,10 +2,9 @@ import { Link } from "react-router-dom"
 
 // Datos de prueba para que el mapeo funcione perfectamente.
 const categoriesData = [
-  { name: "Fruits", slug: "fruits", image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=150&q=80" },
-  { name: "Vegetables", slug: "vegetables", image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=150&q=80" },
-  { name: "Bakery", slug: "bakery", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80" },
-  { name: "Meat", slug: "meat", image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=150&q=80" }
+  { name: "Tacos", slug: "tacos", image: "https://imgur.com/VxqDR4R.jpeg" },
+  { name: "Refrescos", slug: "refrescos", image: "https://imgur.com/PTTU7b5.jpeg" },
+  { name: "Postres", slug: "postres", image: "https://imgur.com/xnsgp5s.jpeg" }
 ]
 
 const HomeCategories = () => {
@@ -13,8 +12,8 @@ const HomeCategories = () => {
     <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
             {/* Títulos alineados a la izquierda originalmente */}
-            <h2 className="text-2xl font-semibold text-zinc-900">Browse Categories</h2>
-            <p className="text-sm text-zinc-500 mt-1">Find exactly what you need using our selection</p>
+            <h2 className="text-2xl font-semibold text-zinc-900">Explora el Menú</h2>
+            <p className="text-sm text-zinc-500 mt-1">Elige tacos, refrescos y postres directo de nuestra cocina.</p>
             
             {/* Contenedor de imágenes alineado al centro */}
             <div className="flex flex-wrap items-center justify-center mt-8 gap-6 w-full">

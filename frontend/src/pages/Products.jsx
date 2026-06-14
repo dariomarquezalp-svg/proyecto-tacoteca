@@ -15,7 +15,7 @@ const Products = () => {
   // 1. Lectura centralizada de parámetros desde la URL
   const query = searchParams.get("q") || ""; 
   const category = searchParams.get("category") || "";
-  const organic = searchParams.get("organic") || "";
+  // organic filter removed for Tacoteca menu
   const sort = searchParams.get("sort") || "";
   const page = Number(searchParams.get("page")) || 1;
   const minPrice = searchParams.get("minPrice") || "";
@@ -40,11 +40,7 @@ const Products = () => {
       );
     }
 
-    // Filtro por Orgánico
-    if (organic) {
-      const isOrganic = organic === "true";
-      result = result.filter((p) => p.organic === isOrganic);
-    }
+    // Orgánico filter removed intentionally
 
     // Filtro por Precio Mínimo
     if (minPrice) {
@@ -68,9 +64,7 @@ const Products = () => {
         case "price_desc":
           result.sort((a, b) => b.price - a.price);
           break;
-        case "rating":
-          result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-          break;
+        // rating sort removed for Tacoteca (ratings UI disabled)
         case "name":
           result.sort((a, b) => a.name.localeCompare(b.name));
           break;
@@ -91,7 +85,7 @@ const Products = () => {
       totalPages: computedTotalPages,
       totalCount,
     };
-  }, [query, category, organic, sort, page, minPrice, maxPrice]);
+  }, [query, category, sort, page, minPrice, maxPrice]);
 
   // 3. Handlers de URL dinámicos
   const updateFilter = (key, value) => {
@@ -110,7 +104,7 @@ const Products = () => {
   const clearFilters = () => setSearchParams({});
 
   const activeCategory = categoriesData.find((c) => c.slug === category);
-  const hasFilters = Boolean(category || organic || minPrice || maxPrice || query);
+  const hasFilters = Boolean(category || minPrice || maxPrice || query);
 
   return (
     // BASE NEGRO ABSOLUTO PREMIUM
@@ -137,7 +131,6 @@ const Products = () => {
               <FilterPanel
                 categories={categoriesData}
                 category={category}
-                organic={organic}
                 minPrice={minPrice}
                 maxPrice={maxPrice}
                 updateFilter={updateFilter}
@@ -179,7 +172,7 @@ const Products = () => {
                     <option value="">Más recientes</option>
                     <option value="price_asc">Precio: Menor → Mayor</option>
                     <option value="price_desc">Precio: Mayor → Menor</option>
-                    <option value="rating">Mejor valorados</option>
+                    {/* Rating option removed — ratings are disabled */}
                     <option value="name">Nombre: A → Z</option>
                   </select>
                   <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A7A7A7] pointer-events-none" />
@@ -267,7 +260,6 @@ const Products = () => {
               <FilterPanel
                 categories={categoriesData}
                 category={category}
-                organic={organic}
                 minPrice={minPrice}
                 maxPrice={maxPrice}
                 updateFilter={updateFilter}

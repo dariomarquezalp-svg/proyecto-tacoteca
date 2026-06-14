@@ -2,8 +2,7 @@ import Hero from "../components/Home/Hero"
 import { Features } from "../components/Home/Features"
 import HomeCategories from "../components/Home/HomeCategories"
 import PopularProducts from "../components/Home/PopularProducts"
-import AppPromoBanner from "../components/Home/AppPromoBanner"
-import Newsletter from "../components/Home/Newsletter"
+// App promo and newsletter removed per project requirements
 
 export const Home = () => {
   return (
@@ -12,8 +11,6 @@ export const Home = () => {
       <Features />
       <HomeCategories />
       <PopularProducts />
-      <AppPromoBanner />
-      <Newsletter />
     </div>
   )
 }

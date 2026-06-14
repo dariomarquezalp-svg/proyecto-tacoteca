@@ -3,7 +3,6 @@ import React from "react";
 const FilterPanel = ({
   categories,
   category,
-  organic,
   minPrice,
   maxPrice,
   updateFilter,

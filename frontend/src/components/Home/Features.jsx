@@ -3,10 +3,10 @@ import { Truck, ShieldCheck, BadgePercent, Headphones } from "lucide-react"
 // Datos de prueba para que el mapa funcione perfectamente. Ajusta los iconos si lo necesitas.
 const heroSectionData = {
   hero_features: [
-    { icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
-    { icon: ShieldCheck, title: "Secure Payment", desc: "100% protected" },
-    { icon: BadgePercent, title: "Best Deals", desc: "Daily discounts" },
-    { icon: Headphones, title: "24/7 Support", desc: "Dedicated assistance" }
+    { icon: Truck, title: "Entrega Rápida", desc: "En menos de 30 minutos" },
+    { icon: ShieldCheck, title: "Pago Seguro", desc: "100% protegido" },
+    { icon: BadgePercent, title: "Sabor Auténtico", desc: "Receta tradicional" },
+    { icon: Headphones, title: "Atención 24/7", desc: "Soporte dedicado" }
   ]
 }
 

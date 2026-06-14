@@ -9,9 +9,10 @@ import {
 } from "lucide-react";
 
 import { useCart } from "../context/CartContext";
+import formatCurrency from "../utils/formatCurrency";
 
 const CartSidebar = () => {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "₹";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
 
   const {
     items,
@@ -75,8 +76,7 @@ const CartSidebar = () => {
                     {item.product.name}
                   </h4>
                   <p className="text-xs text-app-text-light">
-                    {currency}
-                    {item.product.price.toFixed(2)} / {item.product.unit}
+                    {formatCurrency(item.product.price)} / {item.product.unit}
                   </p>
                   <div className="flex items-center justify-between mt-2">
                     <div className="flex items-center gap-1.5">
@@ -104,8 +104,7 @@ const CartSidebar = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold">
-                        {currency}
-                        {(item.product.price * item.quantity).toFixed(2)}
+                        {formatCurrency(item.product.price * item.quantity)}
                       </span>
                       <button
                         onClick={() => removeFromCart(item.product.id)}
@@ -125,10 +124,7 @@ const CartSidebar = () => {
           <div className="p-5 border-t border-app-border space-y-3">
             <div className="flex justify-between text-sm">
               <span className="text-app-text-light">Subtotal</span>
-              <span className="font-medium">
-                {currency}
-                {cartTotal.toFixed(2)}
-              </span>
+              <span className="font-medium">{formatCurrency(cartTotal)}</span>
             </div>
 
             <div className="flex justify-between text-sm">
@@ -137,23 +133,20 @@ const CartSidebar = () => {
                 {deliveryFee === 0 ? (
                   <span className="text-app-success">Free</span>
                 ) : (
-                  `${currency}${deliveryFee.toFixed(2)}`
+                  formatCurrency(deliveryFee)
                 )}
               </span>
             </div>
 
             {deliveryFee > 0 && (
               <p className="text-xs text-app-text-light text-center">
-                Free delivery on orders over {currency}20!
+                Free delivery on orders over {formatCurrency(20)}!
               </p>
             )}
 
             <div className="flex justify-between text-base font-semibold border-t border-app-border pt-3">
               <span>Total</span>
-              <span>
-                {currency}
-                {grandTotal.toFixed(2)}
-              </span>
+              <span>{formatCurrency(grandTotal)}</span>
             </div>
 
             <button

@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, Star } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useCart } from "../../context/CartContext"; // ──> RUTA CORREGIDA: Subimos 2 niveles
+import formatCurrency from "../../utils/formatCurrency";
 
 const ProductCard = ({ product }) => {
   // Captura el símbolo de la moneda desde el entorno o usa '$' por defecto
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
 
   const { addToCart } = useCart();
   const navigate = useNavigate();
@@ -48,34 +49,21 @@ const ProductCard = ({ product }) => {
             {product.name}
           </h3>
 
-          {/* Rating / Calificaciones */}
-          {product.rating > 0 && (
-            <div className="flex items-center gap-1 mb-2">
-              <Star className="size-3 text-amber-400 fill-amber-400" />
-              <span className="text-xs font-medium text-gray-600">
-                {product.rating}
-              </span>
-              <span className="text-xs text-gray-400">
-                ({product.reviewCount || 0})
-              </span>
-            </div>
-          )}
+          {/* Ratings removed per project requirements */}
         </div>
 
         {/* Sección de Precio + Botón Añadir */}
         <div className="flex items-center justify-between gap-2 mt-2">
           <div className="flex items-center gap-1 truncate">
             <span className="text-base font-bold text-zinc-900">
-              {currency}
-              {typeof product.price === "number" ? product.price.toFixed(2) : product.price}
+              {formatCurrency(product.price)}
             </span>
             <span className="text-xs text-gray-400 block">
               /{product.unit || "pz"}
             </span>
             {product.originalPrice > product.price && (
               <span className="text-xs text-gray-400 line-through ml-1.5">
-                {currency}
-                {typeof product.originalPrice === "number" ? product.originalPrice.toFixed(2) : product.originalPrice}
+                {formatCurrency(product.originalPrice)}
               </span>
             )}
           </div>

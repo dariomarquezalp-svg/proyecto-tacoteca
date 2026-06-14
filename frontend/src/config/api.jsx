@@ -10,6 +10,9 @@ const api = axios.create({
   },
 });
 
+// Debug helper: show which backend URL the frontend will call
+console.log("[api] using baseURL:", API_BASE_URL);
+
 // 2. Interceptor de Peticiones: Adjunta automáticamente el token a cada llamado al backend
 api.interceptors.request.use(
   (config) => {

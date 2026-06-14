@@ -1,8 +1,7 @@
 import React from "react";
+import formatCurrency from "../../utils/formatCurrency";
 
 const CheckoutReview = ({ address, items, handlePlaceOrder, loading, total }) => {
-  // 💸 Cambiado el respaldo por defecto a "$" para que coincida con tu Tacoteca
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
 
   return (
     // 🎨 DISEÑO OSCURO ADAPTADO AL ESTILO DE LA TACOTECA
@@ -47,7 +46,7 @@ const CheckoutReview = ({ address, items, handlePlaceOrder, loading, total }) =>
               </div>
               {/* Moneda e importes corregidos */}
               <span className="text-sm font-bold text-[#FF8C00] ml-2 shrink-0">
-                {currency}{(item.product?.price * item.quantity).toFixed(2)}
+                {formatCurrency(item.product?.price * item.quantity)}
               </span>
             </div>
           ))}
@@ -67,7 +66,7 @@ const CheckoutReview = ({ address, items, handlePlaceOrder, loading, total }) =>
             Procesando Pedido...
           </>
         ) : (
-          `Place Order • ${currency}${total.toFixed(2)}`
+          `Place Order • ${formatCurrency(total)}`
         )}
       </button>
 

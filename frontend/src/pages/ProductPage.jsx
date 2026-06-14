@@ -4,23 +4,21 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   HomeIcon,
-  LeafIcon,
   MinusIcon,
   PlusIcon,
   ShoppingCartIcon,
-  StarIcon,
 } from "lucide-react";
 
 import { useCart } from "../context/CartContext";
 import Loading from "../components/Loading";
-import DummyReviewsSection from "../assets/DummyReviewsSection";
+import formatCurrency from "../utils/formatCurrency";
 
 // Importación de datos locales seguros y tarjeta de producto
 import { dummyProducts } from "../assets/assets"; 
 import ProductCard from "../components/Home/ProductCard";
 
 const ProductPage = () => {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
   const { id } = useParams();
   const navigate = useNavigate();
   const { items, addToCart, updateQuantity, removeFromCart } = useCart();
@@ -139,12 +137,6 @@ const ProductPage = () => {
                     {product.discount}% DESC
                   </span>
                 )}
-                {product.isOrganic && (
-                  <span className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold bg-emerald-600 text-white rounded-full shadow-md">
-                    <LeafIcon className="w-3 h-3 fill-white" />
-                    Natural
-                  </span>
-                )}
               </div>
             </div>
 
@@ -158,34 +150,16 @@ const ProductPage = () => {
                 {product.name}
               </h1>
 
-              {/* Calificaciones por estrellas */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <StarIcon
-                      key={star}
-                      className={`w-4 h-4 ${
-                        star <= Math.round(product.rating || 4.5) 
-                          ? "text-[#FF8C00] fill-[#FF8C00]" 
-                          : "text-[#2A2A2A]"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs font-bold text-white">{product.rating || "4.5"}</span>
-                <span className="text-xs font-medium text-white">
-                  ({product.reviewCount || "12"} reseñas)
-                </span>
-              </div>
+              {/* Ratings removed per project requirements */}
 
               {/* Precios e Información de la Porción */}
               <div className="flex items-baseline gap-3 mb-5 border-b border-white/5 pb-4">
                 <span className="text-3xl font-bold text-white tracking-tight">
-                  {currency}{(product.price || 0).toFixed(2)}
+                  {formatCurrency(product.price || 0)}
                 </span>
                 {(product.originalPrice > product.price || product.oldPrice > product.price) && (
                   <span className="text-lg text-[#A7A7A7] line-through font-medium">
-                    {currency}{(product.originalPrice || product.oldPrice).toFixed(2)}
+                    {formatCurrency(product.originalPrice || product.oldPrice)}
                   </span>
                 )}
                 <span className="text-xs text-[#A7A7A7] font-bold uppercase tracking-wider">/ {product.unit || "Orden"}</span>
@@ -260,35 +234,7 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* PARCHE DE FUERZA PARA LAS RESEÑAS (Traduce títulos e inyecta rescates visuales) */}
-        <div className="bg-[#121212] text-white rounded-2xl border border-white/5 shadow-xl p-6 md:p-8 mb-16 relative overflow-hidden reviews-dark-patch">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/5" />
-          <style>{`
-            .reviews-dark-patch, 
-            .reviews-dark-patch div, 
-            .reviews-dark-patch section,
-            .reviews-dark-patch [class*="bg-"] {
-              background-color: #121212 !important;
-            }
-            .reviews-dark-patch text, 
-            .reviews-dark-patch p, 
-            .reviews-dark-patch span, 
-            .reviews-dark-patch h1, 
-            .reviews-dark-patch h2, 
-            .reviews-dark-patch h3 {
-              color: #ffffff !important;
-            }
-            .reviews-dark-patch .text-[#A7A7A7] {
-              color: #A7A7A7 !important;
-            }
-          `}</style>
-          <div className="mb-4">
-            <h2 className="text-xl font-bold tracking-tight text-white uppercase mb-1">
-              Reseñas de Clientes
-            </h2>
-          </div>
-          <DummyReviewsSection product={product} />
-        </div>
+        {/* Reviews removed per request */}
 
         {/* Sección de Productos Relacionados */}
         {relatedProducts.length > 0 && (

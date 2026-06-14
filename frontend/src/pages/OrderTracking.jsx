@@ -7,9 +7,11 @@ import OrderOTP from "../components/OrderTracking/OrderOTP";
 import LiveMap from "../components/OrderTracking/LiveMap";
 import OrderTimeLine from "../components/OrderTracking/OrderTimeLine";
 import api from "../config/api";
+import formatCurrency from "../utils/formatCurrency";
+import { dummyProducts } from "../assets/assets";
 
 const OrderTracking = () => {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
   const { id } = useParams();
   const navigate = useNavigate();
   
@@ -86,6 +88,23 @@ const OrderTracking = () => {
       case "Cancelled": return "Cancelado";
       default: return status;
     }
+  };
+
+  const getOrderItemImage = (item) => {
+    if (!item) return "https://via.placeholder.com/150";
+    if (item.product && typeof item.product === "object") {
+      return item.product.image || item.image || "https://via.placeholder.com/150";
+    }
+
+    const productId = typeof item.product === "string"
+      ? item.product
+      : item.product?.id || item.product?._id;
+
+    const fallback = dummyProducts.find(
+      (product) => product._id === productId || product.id === productId
+    );
+
+    return item.image || fallback?.image || "https://via.placeholder.com/150";
   };
 
   // Cálculo de respaldo para el subtotal si no viene directamente de la API
@@ -233,7 +252,7 @@ const OrderTracking = () => {
                       </p>
                     </div>
                     <span className="text-xs font-bold text-white">
-                      {currency}{((item.price || item.product?.price || 0) * item.quantity).toFixed(2)}
+                      {formatCurrency((item.price || item.product?.price || 0) * item.quantity)}
                     </span>
                   </div>
                 ))}
@@ -243,24 +262,24 @@ const OrderTracking = () => {
               <div className="mt-4 space-y-2.5 text-xs font-medium">
                 <div className="flex justify-between text-[#A7A7A7]">
                   <span>Subtotal</span>
-                  <span className="text-white font-bold">{currency}{Number(displaySubtotal).toFixed(2)}</span>
+                  <span className="text-white font-bold">{formatCurrency(Number(displaySubtotal))}</span>
                 </div>
-                
+
                 <div className="flex justify-between text-[#A7A7A7]">
                   <span>Envío</span>
                   <span className="text-emerald-500 font-bold uppercase tracking-wider">
-                    {order.deliveryFee === 0 || !order.deliveryFee ? "Gratis" : `${currency}${order.deliveryFee.toFixed(2)}`}
+                    {order.deliveryFee === 0 || !order.deliveryFee ? "Gratis" : formatCurrency(order.deliveryFee)}
                   </span>
                 </div>
 
                 <div className="flex justify-between text-[#A7A7A7]">
                   <span>Impuestos (IVA)</span>
-                  <span className="text-white font-bold">{currency}{(order.tax || 0).toFixed(2)}</span>
+                  <span className="text-white font-bold">{formatCurrency(order.tax || 0)}</span>
                 </div>
 
                 <div className="flex justify-between pt-3 border-t border-white/5 font-bold text-white uppercase tracking-tight">
                   <span>Total</span>
-                  <span className="text-[#FF8C00] text-sm">{currency}{(order.total || 0).toFixed(2)}</span>
+                  <span className="text-[#FF8C00] text-sm">{formatCurrency(order.total || 0)}</span>
                 </div>
               </div>
             </div>

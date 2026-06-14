@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Star, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useCart } from "../../context/CartContext";
+import formatCurrency from "../utils/formatCurrency";
 
 const ProductCard = ({ product }) => {
-  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+  const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "MX$";
   const { addToCart, items, updateQuantity } = useCart();
 
   // Extraer el ID del producto de forma segura (soporta id y _id)
@@ -72,23 +73,18 @@ const ProductCard = ({ product }) => {
             {product?.name}
           </h3>
           
-          {/* Calificación */}
-          <div className="flex items-center gap-1 mt-1.5 mb-2">
-            <Star className="w-3.5 h-3.5 text-[#FF8C00] fill-[#FF8C00]" />
-            <span className="text-xs font-bold text-white">{product?.rating || "4.5"}</span>
-            <span className="text-[11px] text-[#A7A7A7] font-medium">({product?.reviewCount || "12"})</span>
-          </div>
+          {/* Ratings removed per project requirements */}
         </div>
 
         {/* Fila de Precio y Botón de Compra */}
         <div className="flex items-center justify-between pt-2 border-t border-white/5">
           <div className="flex items-baseline gap-1.5">
             <span className="text-base font-black text-white tracking-tight">
-              {currency}{(product?.price || 0).toFixed(2)}
+              {formatCurrency(product?.price || 0)}
             </span>
             {(product?.originalPrice > product?.price || product?.oldPrice > product?.price) && (
               <span className="text-xs text-[#A7A7A7] line-through font-medium">
-                {currency}{(product.originalPrice || product.oldPrice).toFixed(2)}
+                {formatCurrency(product.originalPrice || product.oldPrice)}
               </span>
             )}
           </div>

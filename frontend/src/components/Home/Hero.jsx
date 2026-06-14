@@ -6,7 +6,7 @@ const heroSectionData = {
     // 📸 Actualizado: Imagen premium de tacos en alta definición con tonos oscuros
     image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=1470&auto=format&fit=crop" 
   },
-  description: "Descubre los ingredientes orgánicos más frescos, entregados directamente en tu puerta, para que tu familia esté sana y feliz."
+  description: "Tacos auténticos, salsas hechas a mano y entregas rápidas para disfrutar en casa."
 }
 
 const Hero = () => {
@@ -28,15 +28,15 @@ const Hero = () => {
             
             {/* Contenedor de Texto y Botones */}
             <div className="max-w-xl">
-                {/* Badge Orgánico con texto naranja */}
+                {/* Badge de Marca */}
                 <span className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-[#FF8C00] bg-[#FF8C00]/10 rounded-full mb-5 border border-[#FF8C00]/20 tracking-wide">
-                    <LeafIcon className="size-3"/> Productos frescos de la granja y orgánicos.
+                  Sabor auténtico y tradición.
                 </span>
 
                 {/* Título Principal: Cambiado de verde a Naranja Tacoteca en el texto secundario */}
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.15] mb-5 font-medium">
-                    Nutre tu hogar con <br />
-                    <span className="text-[#FF8C00] font-normal">lo mejor de la Tierra.</span>
+                    Disfruta los mejores tacos <br />
+                    <span className="text-[#FF8C00] font-normal">directo a tu mesa.</span>
                 </h1>
 
                 {/* Descripción en Español */}
